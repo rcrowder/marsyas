@@ -5,6 +5,23 @@ if(POLICY CMP0020)
   cmake_policy(SET CMP0020 NEW)
 endif()
 
+# Accept policy to ignore COMPILE_DEFINITIONS_<CONFIG> properties of targets and directories
+# (Instead, use generator expressions for configuration-dependent compile definitions)
+if(POLICY CMP0043)
+  cmake_policy(SET CMP0043 NEW)
+endif()
+
+# Accept policy: use rpath on Mac OS X by default
+if (POLICY CMP0042)
+  cmake_policy(SET CMP0042 NEW)
+endif()
+
+# Mac OS X: rpath handling
+set(CMAKE_MACOSX_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH "@loader_path/../lib")
+
+
+
 option(MARSYAS_DOCUMENTATION_ONLY "Only build documentation, not program sources" OFF)
 
 # If only building documentation, tell CMake
